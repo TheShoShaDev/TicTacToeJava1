@@ -92,5 +92,105 @@ class TicTacToe
         System.out.println("GAME OVER");
         printTable();
     }
+    void initTable()
+    {
+        for (int row = 0; row < 3; row++)
+        {
+            for (int col = 0; col < 3; col++)
+            {
+                table[row][col] = SIGN_EMPTY;
+            }
+        }
+    }
+    void printTable()
+    {
+        for (int row = 0; row < 3; row++)
+        {
+            for (int col = 0; col < 3; col++)
+            {
+                System.out.print(table[row][col].getChar() + " ");
+            }
+            System.out.println();
+        }
+    }
+    void turn()
+    {
+        System.out.println("Enter X (1..9):");
+        printhint();
+        int pos = 1;
+        do
+        {
+            pos = scanner.nextInt();
+            if (pos <= 9 && pos >= 1) {
+                pos = pos - 1;
+                int j = pos % 3;
+                int i = pos / 3;
+                if (table[i][j] == SIGN_EMPTY) {
+                    table[i][j] = GetSign();
+                    break;
+                } else {
+                    System.out.println("Error. Try again");
+                }
+            } else {
+                System.out.println("Error. You fool");
+            }
+        }
+        while (pos > 0 || pos < 0);
 
+    }
+
+    boolean checkWin(Basic dot)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if ((table[i][0].equals(dot) && table[i][1].equals(dot) &&
+                    table[i][2].equals(dot)) ||
+                    (table[0][i].equals(dot) && table[1][i].equals(dot) &&
+                            table[2][i].equals(dot)))
+            {
+                return true;
+            }
+        }
+        return (table[0][0].equals(dot) && table[1][1].equals(dot) &&
+                table[2][2].equals(dot)) ||
+                (table[2][0].equals(dot) && table[1][1].equals(dot) &&
+                        table[0][2].equals(dot));
+
+    }
+
+    boolean isEmptyBoxExist()
+    {
+        for (int row = 0; row < 3; row++)
+        {
+            for (int col = 0; col < 3; col++)
+            {
+                if (table[row][col] == SIGN_EMPTY)
+                {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+
+    Basic GetSign()
+    {
+        if (CURR_SIGN != "X")
+        {
+            CURR_SIGN = "X";
+            return SIGN_X;
+        }
+        else
+        {
+            CURR_SIGN = "O";
+            return SIGN_O;
+        }
+    }
+    void printhint()
+    {
+        System.out.println("[1][2][3]");
+        System.out.println("[4][5][6]");
+        System.out.println("[7][8][9]");
+    }
 }
