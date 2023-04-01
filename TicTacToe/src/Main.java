@@ -16,7 +16,7 @@ class TicTacToe
         }
         public String PrintWin()
         {
-            return "X WIN!";
+            return "О WIN!";
         }
     }
     class Cirle implements Basic
@@ -27,7 +27,7 @@ class TicTacToe
         }
         public String PrintWin()
         {
-            return "O WIN!";
+            return "Х WIN!";
         }
     }
     class Empty implements Basic
@@ -64,25 +64,25 @@ class TicTacToe
         initTable();
         while (true)
         {
-            printTable();
-            turn();
             if (checkWin(SIGN_X))
             {
                 System.out.println(GetSign().PrintWin());
                 break;
             }
+            printTable();
+            turn();
             if(isEmptyBoxExist())
             {
                 System.out.println("Game over!");
                 break;
             }
-            printTable();
-            turn();
             if (checkWin(SIGN_O))
             {
                 System.out.println(GetSign().PrintWin());
                 break;
             }
+            printTable();
+            turn();
             if(isEmptyBoxExist())
             {
                 System.out.println("Game over!");
