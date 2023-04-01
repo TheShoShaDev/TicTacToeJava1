@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class TicTacToe
+public class TicTacToe
 {
     interface Basic
     {
@@ -24,7 +24,7 @@ class TicTacToe
             return "О WIN!";
         }
     }
-    class Cirle implements Basic
+    class Cirle implements Basic // namespace для класса
     {
         public char getChar()
         {
@@ -35,7 +35,7 @@ class TicTacToe
             return "Х WIN!";
         }
     }
-     class Empty implements Basic
+    static class Empty implements Basic //ток статик
     {
         void changeLocalSign(){
             CURR_SIGN = "!";
@@ -129,21 +129,27 @@ class TicTacToe
         do
         {
             pos = scanner.nextInt();
-            if (pos <= 9 && pos >= 1) {
+            if (pos <= 9 && pos >= 1)
+            {
                 pos = pos - 1;
                 int j = pos % 3;
                 int i = pos / 3;
-                if (table[i][j] == SIGN_EMPTY) {
+                if (table[i][j] == SIGN_EMPTY)
+                {
                     table[i][j] = GetSign();
                     break;
-                } else {
+                }
+                else
+                {
                     System.out.println("Error. Try again");
                 }
-            } else {
+            }
+            else
+            {
                 System.out.println("Error. You fool");
             }
         }
-        while (pos > 0 || pos < 0);
+        while (pos >= 0 || pos < 0);
 
     }
 
@@ -187,6 +193,7 @@ class TicTacToe
         if (CURR_SIGN != "X")
         {
             CURR_SIGN = "X";
+            //getClass().toString()
             return SIGN_X;
         }
         else
