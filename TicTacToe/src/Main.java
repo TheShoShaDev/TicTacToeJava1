@@ -8,6 +8,11 @@ class TicTacToe
         String PrintWin();
     }
 
+    interface Basic1 extends  Basic
+    {
+
+    }
+
     class Cross implements Basic
     {
         public char getChar()
@@ -30,8 +35,11 @@ class TicTacToe
             return "Х WIN!";
         }
     }
-    class Empty implements Basic
+     class Empty implements Basic
     {
+        void changeLocalSign(){
+            CURR_SIGN = "!";
+        }
         public char getChar()
         {
             return '*';
@@ -43,7 +51,7 @@ class TicTacToe
     }
     final Basic SIGN_X = new Cross();
     final Basic SIGN_O = new Cirle();
-    String CURR_SIGN = "X";
+    static String CURR_SIGN = "X";
     final Basic SIGN_EMPTY = new Empty();
     Basic[][] table;
     Scanner scanner;
